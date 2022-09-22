@@ -1,0 +1,85 @@
+{% load static %}
+{% load django_htmx %}
+
+
+	<!-- Start Filter Bar -->
+	<div class="filter-bar d-flex flex-wrap align-items-center">
+		<div class="pagination">
+		  {% if products.has_previous %}
+			<a hx-get="{{url}}?page=1" hx-target="#shop-element">1</a>
+			<a class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+			<a hx-get="{{url}}?page={{ products.previous_page_number }}" hx-target="#shop-element">{{ products.previous_page_number }}</a>
+            {% endif %}
+            
+			<a class="active">{{ products.number }}</a>
+			
+			{% if products.has_next %}
+			<a hx-get="{{url}}?page={{ products.next_page_number }}" hx-target="#shop-element">{{ products.next_page_number }}</a>
+			<a class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+			<a hx-get="{{url}}?page={{ products.paginator.num_pages }}" hx-target="#shop-element">{{ products.paginator.num_pages }}</a>
+            {% endif %}
+		</div>
+	</div>
+	<!-- End Filter Bar -->
+	<!-- Start Best Seller -->
+	<section class="lattest-product-area pb-40 category-list">
+		<div class="row">
+			{% for invt in products %}
+			<!-- single product -->
+			<div class="col-lg-4 col-md-6">
+				<div class="single-product">
+					<img class="img-fluid" src="{% static "img/product/p1.jpg" %}" alt="">
+					<div class="product-details">
+						<h6>{{ invt.product.name }}</h6>
+						<div class="price">
+							<h6>$150.00</h6>
+							<h6 class="l-through">${{ invt.sale_price }}</h6>
+						</div>
+						<div class="prd-bottom">
+						  <input type="hidden" name="invt_id" id="invt_id" value="{{ invt.id }}" />
+							<a hx-post="{% url "cart:add" %}" hx-trigger="click" hx-target="#cart-element" class="social-info">
+  							<span class="ti-bag"></span>
+  							<p class="hover-text">add to bag</p>
+  					  </a>
+							<a href="" class="social-info">
+								<span class="lnr lnr-heart"></span>
+								<p class="hover-text">Wishlist</p>
+							</a>
+							{% comment %}
+							<a href="" class="social-info">
+								<span class="lnr lnr-sync"></span>
+								<p class="hover-text">compare</p>
+							</a>
+							{% endcomment %}
+							<a href="{{ invt.product.get_absolute_url }}" class="social-info">
+								<span class="lnr lnr-move"></span>
+								<p class="hover-text">view more</p>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- single product -->
+			{% endfor %}
+		</div>
+	</section>
+	<!-- End Best Seller -->
+	<!-- Start Filter Bar -->
+	<div class="filter-bar d-flex flex-wrap align-items-center">
+		<div class="pagination">
+		    {% if products.has_previous %}
+			<a hx-get="{{url}}?page=1" hx-target="#shop-element">1</a>
+			<a class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+			<a hx-get="{{url}}?page={{ products.previous_page_number }}" hx-target="#shop-element">{{ products.previous_page_number }}</a>
+            {% endif %}
+            
+			<a class="active">{{ products.number }}</a>
+			
+			{% if products.has_next %}
+			<a hx-get="{{url}}?page={{ products.next_page_number }}" hx-target="#shop-element">{{ products.next_page_number }}</a>
+			<a class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+			<a hx-get="{{url}}?page={{ products.paginator.num_pages }}" hx-target="#shop-element">{{ products.paginator.num_pages }}</a>
+            {% endif %}
+		</div>
+	</div>
+	<!-- End Filter Bar -->
