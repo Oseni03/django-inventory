@@ -2,7 +2,7 @@ Metadata-Version: 2.1
 Name: django-inventory
 Version: 0.1
 Summary: An ecommerce inventory Django app.
-Home-page: UNKNOWN
+Home-page: 'https://github.com/Oseni03/django-inventory',
 Author: Oseni Ayomide Daniel
 Author-email: oseniayomide57@gmail.com
 Maintainer: Oseni Ayomide Daniel
