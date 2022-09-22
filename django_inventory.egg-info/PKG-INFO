@@ -2,7 +2,7 @@ Metadata-Version: 2.1
 Name: django-inventory
 Version: 0.1
 Summary: An ecommerce inventory Django app.
-Home-page: 'https://github.com/Oseni03/django-inventory',
+Home-page: https://github.com/Oseni03/django-inventory
 Author: Oseni Ayomide Daniel
 Author-email: oseniayomide57@gmail.com
 Maintainer: Oseni Ayomide Daniel
@@ -12,7 +12,6 @@ Keywords: django ecommerce inventory store
 Platform: UNKNOWN
 Classifier: Environment :: Web Environment
 Classifier: Framework :: Django
-Classifier: Framework :: Django :: 4.0  # Replace "X.Y" as appropriate
 Classifier: Intended Audience :: Developers
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
