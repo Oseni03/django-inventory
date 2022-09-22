@@ -226,6 +226,7 @@ class ProductAttributeValues(models.Model):
     def __str__(self):
         return f"{self.productinventory} - {self.attributevalues}"
 
+
 class ProductTypeAttribute(models.Model):
   """
     Product type attribute link table

@@ -3,12 +3,16 @@ from django.views import generic
 from django.contrib import messages
 from django.urls import reverse
 from django.core.paginator import Paginator
+from django.conf import settings
 
 from .models import Product, Brand, Attribute, Category, ProductTypeAttribute, Inventory
 
 # Create your views here.
 class HomeView(generic.TemplateView):
-    template_name = "inventory/home.html"
+    try:
+        template_name = settings.INVENTORY_HOME_HTML
+    except AtrributeError:
+        template_name = "inventory/home.html"
     
     def get_context_data(self):
         context = super().get_context_data()
@@ -24,8 +28,11 @@ class HomeView(generic.TemplateView):
 
 
 class ShopView(generic.ListView):
+    try:
+        template_name = settings.INVENTORY_SHOP_HTML
+    except AtrributeError:
+        template_name = "inventory/category.html"
     context_object_name = "products"
-    template_name = "inventory/category.html"
     paginate_by = 10
     
     def get_queryset(self):
@@ -56,12 +63,13 @@ def category_products(request, slug):
         "products": products,
         "url": reverse("inventory:category-products", args=[slug,])
     }
-    return render(request, "inventory/partials/shop-element.html", context)
+    try:
+        return render(request, settings.INVENTORY_SHOP_SUBHTML, context)
+    except AtrributeError:
+        return render(request, "inventory/partials/shop-element.html", context)
 
 
 def brand_products(request, pk):
-    #brand = request.POST.get("brand")
-    #products = Product.products.filter(inventory__brand__name=brand)
     products = Inventory.objects.prefetch_related("product", "brand").filter(
       brand__id=pk,
       product__is_active=True,
@@ -76,7 +84,10 @@ def brand_products(request, pk):
         "products": products,
         "url": reverse("inventory:brand-products", args=[pk,])
     }
-    return render(request, "inventory/partials/shop-element.html", context)
+    try:
+        return render(request, settings.INVENTORY_SHOP_SUBHTML, context)
+    except AtrributeError:
+        return render(request, "inventory/partials/shop-element.html", context)
 
 
 def attr_products(request, pk):
@@ -95,13 +106,19 @@ def attr_products(request, pk):
         "products": products,
         "url": reverse("inventory:attr-products", args=[pk,]),
     }
-    return render(request, "inventory/partials/shop-element.html", context)
+    try:
+        return render(request, settings.INVENTORY_SHOP_SUBHTML, context)
+    except AtrributeError:
+        return render(request, "inventory/partials/shop-element.html", context)
 
 
 class ProductDetailView(generic.DetailView):
     model = Product 
-    template_name = "inventory/single-product.html"
     context_object_name = "invt"
+    try:
+        template_name = settings.INVENTORY_PRODUCT_HTML
+    except AtrributeError:
+        template_name = "inventory/single-product.html"
     
     def get_object(self, **kwargs):
       prod = super().get_object(**kwargs)
