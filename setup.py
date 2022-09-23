@@ -1,3 +1,5 @@
 from setuptools import setup
 
-setup()
+setup(
+    package_data={"inventory": ["templates/inventory", "static/inventory"]}
+  )

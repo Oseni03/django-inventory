@@ -1,3 +1,25 @@
+Metadata-Version: 2.1
+Name: django-ecomstore-inventory
+Version: 0.0.1
+Summary: An ecommerce inventory Django app.
+Home-page: https://github.com/Oseni03/django-inventory
+Author: Oseni Ayomide Daniel
+Author-email: oseniayomide57@gmail.com
+Maintainer: Oseni Ayomide Daniel
+Maintainer-email: oseniayomide57@gmail.com
+License: MIT  #OR BSD-3-Clause Example license
+Project-URL: Bug Tracker, https://github.com/Oseni03/django-inventory/issues
+Keywords: ["django","ecommerce","inventory","store"]
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.10
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
 # django-inventory
 
 Django-inventory is a Django app to perform full Ecommerce inventory functionality. You get to add product specific to a category, attribute, type and brand.
