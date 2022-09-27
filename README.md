@@ -18,7 +18,7 @@ Detailed documentation is in the "docs" directory.
             'mptt',
         ]
     
-    OR
+    AND
 
         MIDDLEWARE = [
             ...
