@@ -11,7 +11,7 @@ from .models import Product, Brand, Attribute, Category, ProductTypeAttribute, I
 class HomeView(generic.TemplateView):
     try:
         template_name = settings.INVENTORY_HOME_HTML
-    except AtrributeError:
+    except AttributeError:
         template_name = "inventory/home.html"
     
     def get_context_data(self):
