@@ -63,10 +63,16 @@ def category_products(request, slug):
         "products": products,
         "url": reverse("inventory:category-products", args=[slug,])
     }
-    try:
-        return render(request, settings.INVENTORY_SHOP_SUBHTML, context)
-    except AtrributeError:
-        return render(request, "inventory/partials/shop-element.html", context)
+    if not request.htmx:
+      try:
+        return render(request, settings.INVENTORY_CATEGORY_HTML, context)
+      except TemplateDoesNotExist:
+        raise "Template does not exit"
+    else:
+      try:
+          return render(request, settings.INVENTORY_SHOP_SUBHTML, context)
+      except AtrributeError:
+          return render(request, "inventory/partials/shop-element.html", context)
 
 
 def brand_products(request, pk):
@@ -84,10 +90,16 @@ def brand_products(request, pk):
         "products": products,
         "url": reverse("inventory:brand-products", args=[pk,])
     }
-    try:
-        return render(request, settings.INVENTORY_SHOP_SUBHTML, context)
-    except AtrributeError:
-        return render(request, "inventory/partials/shop-element.html", context)
+    if not request.htmx:
+      try:
+        return render(request, settings.INVENTORY_BRAND_HTML, context)
+      except TemplateDoesNotExist:
+        raise "Template does not exit"
+    else:
+      try:
+          return render(request, settings.INVENTORY_SHOP_SUBHTML, context)
+      except AtrributeError:
+          return render(request, "inventory/partials/shop-element.html", context)
 
 
 def attr_products(request, pk):
@@ -106,10 +118,16 @@ def attr_products(request, pk):
         "products": products,
         "url": reverse("inventory:attr-products", args=[pk,]),
     }
-    try:
-        return render(request, settings.INVENTORY_SHOP_SUBHTML, context)
-    except AtrributeError:
-        return render(request, "inventory/partials/shop-element.html", context)
+    if not request.htmx:
+      try:
+        return render(request, settings.INVENTORY_ATTR_HTML, context)
+      except TemplateDoesNotExist:
+        raise "Template does not exit"
+    else:
+      try:
+          return render(request, settings.INVENTORY_SHOP_SUBHTML, context)
+      except AtrributeError:
+          return render(request, "inventory/partials/shop-element.html", context)
 
 
 class ProductDetailView(generic.DetailView):
