@@ -10,6 +10,8 @@ REQUIREMENTS = [
     'mptt',
 ]
 
+DIR = ["src"]
+
 CLASSIFIERS = [
     'Environment :: Web Environment',
     'Framework :: Django',
@@ -47,5 +49,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=REQUIREMENTS,
-    package_data={"inventory": ["templates/inventory", "static/inventory"]}
+    package_data={"inventory": ["templates/inventory", "static/inventory"]},
+    package_dir=DIR,
+    where="src",
 )
